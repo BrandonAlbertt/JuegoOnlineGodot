@@ -1,0 +1,32 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Nuevo Proyecto de Juego"
+run/main_scene="uid://bngr3rvec2ri0"
+config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
+config/icon="res://icon.svg"
+
+[autoload]
+
+NetworkManager="*res://Scripts/Networking/NetworkManager.cs"
+DbManager="*res://Scripts/Managers/DbManager.cs"
+UserSession="*res://Scripts/Managers/UserSession.cs"
+ClaseManager="*res://Scripts/Managers/ClaseManager.cs"
+
+[dotnet]
+
+project/assembly_name="Nuevo Proyecto de Juego"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

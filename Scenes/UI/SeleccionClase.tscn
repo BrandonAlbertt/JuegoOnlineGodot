@@ -1,0 +1,98 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3di2nwndmf0o"]
+
+[ext_resource type="VideoStream" uid="uid://yilfwhjoqf1n" path="res://Assets/Video/fondo_ligero.ogv" id="1_4e0fw"]
+[ext_resource type="Script" uid="uid://cgabgksljmesr" path="res://Scripts/UI/SeleccionClase.cs" id="1_py5un"]
+
+[node name="SeleccionClase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_py5un")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 651.0
+stream = ExtResource("1_4e0fw")
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 1000
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 93.0
+offset_right = 1150.0
+offset_bottom = 537.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(805, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="BtnGuerrero" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Gerrero"
+
+[node name="BtnMago" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mago"
+
+[node name="BtnArquero" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Arquero"
+
+[node name="VistaPersonaje" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelNombreClase" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(345, 0)
+layout_mode = 2
+
+[node name="LabelTituloInfo" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Descripcion de clase"
+
+[node name="RichTextDescipcion" type="RichTextLabel" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "vdfsdvsdfasdfasdfasdfasdfsfasdfasdfsdf"
+fit_content = true
+
+[node name="LabelHabilidades" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Habilidades"
+
+[node name="LabelVentajas" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "vventajas
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 561.0
+offset_right = 1151.0
+offset_bottom = 644.0
+alignment = 1
+
+[node name="BtnSeleccionar" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Seleccionar Clase"
+
+[node name="BtnVolver" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Lobby"

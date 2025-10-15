@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://0vwwfl535ouu"]
+
+[ext_resource type="Script" uid="uid://17vtg6fi8yaj" path="res://Scripts/UI/JoinGame.cs" id="1_6tkhv"]
+[ext_resource type="VideoStream" uid="uid://yilfwhjoqf1n" path="res://Assets/Video/fondo_ligero.ogv" id="1_ocfwe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tkhv"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_d00ty"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5smv"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_1qtxl"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_d0hrn"]
+font_size = 30
+
+[node name="JoinGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6tkhv")
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 651.0
+stream = ExtResource("1_ocfwe")
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 1000
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -450.0
+offset_top = -221.0
+offset_right = 445.0
+offset_bottom = 244.0
+alignment = 1
+
+[node name="Titulo" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo1" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ingrese su nombre:"
+label_settings = SubResource("LabelSettings_6tkhv")
+
+[node name="NameLabel" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_d00ty")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo2" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Ingrese la IP:"
+label_settings = SubResource("LabelSettings_u5smv")
+
+[node name="IpInput" type="LineEdit" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+placeholder_text = "127.0.0.1"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo3" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Ingrese el Puerto"
+label_settings = SubResource("LabelSettings_1qtxl")
+
+[node name="PuertoInput" type="SpinBox" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+min_value = 1000.0
+max_value = 99999.0
+value = 9000.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo4" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Codigo de conexion: "
+label_settings = SubResource("LabelSettings_d0hrn")
+
+[node name="codigoInput" type="LineEdit" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="UnirseButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Unirse"
+
+[node name="VolverButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Volver"

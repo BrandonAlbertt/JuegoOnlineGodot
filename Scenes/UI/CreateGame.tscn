@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dw24gswgd6prr"]
+
+[ext_resource type="VideoStream" uid="uid://yilfwhjoqf1n" path="res://Assets/Video/fondo_ligero.ogv" id="1_il4tq"]
+[ext_resource type="Script" uid="uid://wx075h51cpvu" path="res://Scripts/UI/CreateGame.cs" id="1_w1h7j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w1h7j"]
+font_size = 46
+
+[sub_resource type="LabelSettings" id="LabelSettings_cv5i0"]
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_nnhai"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_k0lyn"]
+font_size = 30
+
+[node name="CreateGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w1h7j")
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 652.0
+stream = ExtResource("1_il4tq")
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 1000
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 1153.0
+offset_bottom = 649.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -459.0
+offset_top = -201.0
+offset_right = 462.0
+offset_bottom = 245.0
+alignment = 1
+
+[node name="Titulo" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Crear Partida"
+label_settings = SubResource("LabelSettings_w1h7j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo2" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ingrese su Nombre: "
+label_settings = SubResource("LabelSettings_cv5i0")
+
+[node name="LabelNombre" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "dfgdf"
+label_settings = SubResource("LabelSettings_nnhai")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Titulo3" type="Label" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Puerto: "
+label_settings = SubResource("LabelSettings_k0lyn")
+
+[node name="PuertoInput" type="SpinBox" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+min_value = 1000.0
+max_value = 99999.0
+value = 9000.0
+
+[node name="CrearButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Crear"
+
+[node name="VolverButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Volver
+"

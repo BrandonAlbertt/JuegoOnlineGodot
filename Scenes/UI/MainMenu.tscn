@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://bngr3rvec2ri0"]
+
+[ext_resource type="Script" uid="uid://bfj521es0vo7j" path="res://Scripts/UI/MainMenu.cs" id="1_g18y6"]
+[ext_resource type="VideoStream" uid="uid://yilfwhjoqf1n" path="res://Assets/Video/fondo_ligero.ogv" id="2_mjmdf"]
+
+[sub_resource type="SystemFont" id="SystemFont_g18y6"]
+font_names = PackedStringArray("Tempus Sans ITC")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjmdf"]
+line_spacing = 5.0
+font = SubResource("SystemFont_g18y6")
+font_size = 46
+font_color = Color(0.9352228, 0.1789703, 0.73209393, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g18y6")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 651.0
+stream = ExtResource("2_mjmdf")
+autoplay = true
+expand = true
+loop = true
+buffering_msec = 1000
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 650.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = -186.0
+offset_top = -144.0
+offset_right = 116.0
+offset_bottom = 189.0
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Brandon Game"
+label_settings = SubResource("LabelSettings_mjmdf")
+
+[node name="PlayButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="MultiplayerButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Multiplayer"
+
+[node name="OptionButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Option"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = -309.0
+offset_right = 561.0
+offset_bottom = -251.0
+alignment = 1
+
+[node name="LabelNombre" type="Label" parent="CenterContainer/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="BtnLogin" type="Button" parent="CenterContainer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "LOGIN"
+
+[node name="PopupLogin" type="Window" parent="."]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(400, 200)
+
+[node name="CenterContainer" type="CenterContainer" parent="PopupLogin"]
+offset_right = 402.0
+offset_bottom = 207.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupLogin/CenterContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+alignment = 1
+
+[node name="LabelTitulo" type="Label" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionUsuarioButton" type="OptionButton" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEditNombre" type="LineEdit" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="btnIniciarSesion" type="Button" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "IniciarSesion"
+
+[node name="btnAgregarCuenta" type="Button" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Agregar Cuenta"
+
+[node name="btnCancelar" type="Button" parent="PopupLogin/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Cancelar"
