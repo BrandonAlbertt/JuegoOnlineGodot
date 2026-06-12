@@ -1,4 +1,5 @@
 using Godot;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Buffers;
 using System.Runtime.CompilerServices;
@@ -14,19 +15,19 @@ public partial class CreateGame : Control
 
     public override void _Ready()
     {
-       
+
         _puertoInput = GetNode<SpinBox>("CenterContainer/Panel/VBoxContainer/HBoxContainer2/PuertoInput");
         _crearButton = GetNode<Button>("CenterContainer/Panel/VBoxContainer/CrearButton");
         _volverButton = GetNode<Button>("CenterContainer/Panel/VBoxContainer/VolverButton");
         _nombreUsuarioLabel = GetNode<Label>("CenterContainer/Panel/VBoxContainer/HBoxContainer/LabelNombre");
 
-  
+
         _crearButton.Pressed += OnCrearPressed;
         _volverButton.Pressed += OnVolverPressed;
 
         VnombreUsuario = UserSession.Instance.NombreUsuario;
-        _nombreUsuarioLabel.Text =  VnombreUsuario;
-    
+        _nombreUsuarioLabel.Text = VnombreUsuario;
+
         //ActualizarInfoUser();
     }
 
@@ -63,3 +64,5 @@ public partial class CreateGame : Control
     }
 
 }
+
+ 

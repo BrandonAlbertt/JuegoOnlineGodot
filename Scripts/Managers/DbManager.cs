@@ -6,17 +6,17 @@ using System.IO;
 
 public partial class DbManager : Node
 {
-    // 🔷 Singleton (única instancia global)
+    // Singleton (única instancia global)
     // Esta propiedad permite acceder al gestor de base de datos
     // desde cualquier parte del juego con: DbManager.Instance
     public static DbManager Instance { get; private set; }
 
-    // 🔷 Ruta donde se guardará el archivo de la base de datos
+    // Ruta donde se guardará el archivo de la base de datos
     // ProjectSettings.GlobalizePath convierte la ruta interna de Godot
     // a una ruta absoluta en el sistema del usuario.
     private string _dbPath;
 
-    // 🔷 Este método se ejecuta automáticamente cuando el nodo entra al árbol de escenas
+    //  Este método se ejecuta automáticamente cuando el nodo entra al árbol de escenas
     // Aquí se inicializa la base de datos y se crea la tabla de jugadores si no existe.
     public override void _Ready()
     {
@@ -42,7 +42,7 @@ public partial class DbManager : Node
     }
 
 
-    // 🔷 Este método crea la tabla "jugadores" si no existe.
+    //  Este método crea la tabla "jugadores" si no existe.
     // La tabla tiene: id (clave), nombre (único) y puntos (entero).
     private void CrearTablaJugadores()
     {
@@ -66,7 +66,7 @@ public partial class DbManager : Node
     }
 
 
-    //  🔷 Este método guarda un nuevo jugador en la base de datos
+    //   Este método guarda un nuevo jugador en la base de datos
     // Si el jugador ya existe, no se guarda.
     public bool GuardarJugador(string nombreJugador)
     {
@@ -86,13 +86,13 @@ public partial class DbManager : Node
 
         connection.Close();
 
-        GD.Print($"✅ Jugador '{nombreJugador}' guardado");
+        GD.Print($" Jugador '{nombreJugador}' guardado");
         return true;
     }
 
 
 
-    // 🔷 
+    //  
     public int CargarPuntos(string nombreJugador)
     {
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
@@ -121,7 +121,7 @@ public partial class DbManager : Node
 
 
 
-    // 🔷 Este método obtiene una lista de todos los jugadores con sus puntos.
+    //  Este método obtiene una lista de todos los jugadores con sus puntos.
     // Devuelve una lista de cadenas con formato: "Nombre - Puntos".
     public List<string> ObtenerJugadores()
     {

@@ -1,21 +1,36 @@
-# Godot 4+ specific ignores
-# === GODOT ===
-.import/
+# Godot 4 / C#
+# Mantiene el repo liviano para GitHub:
+# - Se suben escenas, scripts, configuracion y assets livianos.
+# - No se suben caches, builds, exports ni multimedia pesada.
+
+# Godot genera esta carpeta localmente al abrir el proyecto.
 .godot/
+.import/
 mono_crash.*
+
+# Exports y credenciales locales.
 export.cfg
 export_presets.cfg
+export_credentials.cfg
+*.pck
+*.exe
+*.app
+*.apk
+*.aab
+*.ipa
+*.zip
 
-# === C# / .NET ===
+# C# / .NET generados.
 bin/
 obj/
 .mono/
-*.exe
 *.dll
 *.pdb
 *.mdb
+*.deps.json
+*.runtimeconfig.json
 
-# === IDEs y editores ===
+# IDEs y editores.
 .vscode/
 .idea/
 *.user
@@ -23,36 +38,31 @@ obj/
 *.tmp
 *.log
 
-# === Archivos del sistema ===
+# Sistema operativo.
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# === Backups ===
+# Backups y archivos fuente de edicion pesados.
 *.old
 *.bak
-*.tmp
+*.kra
+*.psd
+*.clip
 
-# === Carpetas multimedia (solo estructura) ===
-# Ignorar todo dentro de Assets
-Assets/**
-# Pero permitir que las carpetas existan con un marcador vacío
-!Assets/**/.gitkeep
-
-# === Carpetas de proyecto que sí deben subirse ===
-!Scenes/**
-!Scripts/**
-!Prefabs/**
-!Config/**
-!project.godot
-!*.tscn
-!*.cs
-!*.gd
-!*.tres
-!*.res
-
-# Ignorar videos pesados
+# Multimedia pesada.
+# Si un asset es necesario para ejecutar el juego, preferir una version comprimida/liviana.
 Assets/Video/*.ogv
 Assets/Video/*.mp4
+Assets/Video/*.mov
+Assets/Video/*.avi
+Assets/Video/*.webm
+Assets/Video/*.uid
 Assets/Audio/*.wav
 Assets/Audio/*.mp3
+Assets/Audio/*.flac
+Assets/Audio/*.ogg
+
+# Mantener estructura de carpetas vacias.
+!.gitkeep
+!**/.gitkeep

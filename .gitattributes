@@ -1,2 +1,27 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Godot / C# text files.
+*.cs text eol=lf
+*.tscn text eol=lf
+*.tres text eol=lf
+*.res -text
+*.godot text eol=lf
+*.cfg text eol=lf
+*.md text eol=lf
+
+# Binary assets: do not show noisy text diffs.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.svg text eol=lf
+*.ogg binary
+*.mp3 binary
+*.wav binary
+*.ogv binary
+*.mp4 binary
+*.glb binary
+*.gltf text eol=lf
+*.fbx binary
+*.blend binary

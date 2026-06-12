@@ -19,7 +19,7 @@ public partial class Lobby : Control
 
     public override void _Ready()
     {
-        // 📦 Obtenemos los nodos de la interfaz
+        // Obtenemos los nodos de la interfaz
         _listaJugadoresUI = GetNode<ItemList>("CenterContainer/Panel/VBoxContainer/PlayerList");
         _hostInfoLabel = GetNode<Label>("CenterContainer/Panel/VBoxContainer/HBoxContainer/textoInfo");
         _codigoConexionButton = GetNode<Button>("CenterContainer/Panel/VBoxContainer/HBoxContainer/codigoInfo");
@@ -28,10 +28,10 @@ public partial class Lobby : Control
         _ListoButton = GetNode<Button>("CenterContainer/Panel/VBoxContainer/ListoButton");
         _SelecionarClaseButton = GetNodeOrNull<Button>("CenterContainer/Panel/VBoxContainer/SeleccionButton");
 
-        // 🔗 Conectamos la señal del NetworkManager (autoload)
+        // Conectamos la señal del NetworkManager (autoload)
         // Esta señal se emite cada vez que cambia la lista de jugadores
         // Cuando eso pase, se llama a la función UpdatePlayerList() para refrescar la UI
-        // ✅ CAMBIO: se corrigió el condicional. Antes era "== null", lo que impedía conectar la señal.
+        //  CAMBIO: se corrigió el condicional. Antes era "== null", lo que impedía conectar la señal.
         // Debe ser "!= null" para asegurarse de que el autoload exista antes de conectar.
         if (NetworkManager.Instance != null)
         {
@@ -52,7 +52,7 @@ public partial class Lobby : Control
             );
         }
 
-        // ⚙️ Conectamos los botones a sus métodos
+        //  Conectamos los botones a sus métodos
         _empezarPartidaButton.Pressed += OnComenzarPartidaButtonPressed;
         _salirLobbyButton.Pressed += OnSalirLobbyButtonPressed;
         _ListoButton.Pressed += OnListoButtonPressed;
@@ -67,7 +67,7 @@ public partial class Lobby : Control
     }
 
     // ===============================================================
-    // 🧩 FUNCIÓN: ENCRIPTAR IP Y PUERTO
+    //  FUNCIÓN: ENCRIPTAR IP Y PUERTO
     // ===============================================================
     private string GenerarCodigoConexion(string ip, int puerto)
     {
@@ -82,7 +82,7 @@ public partial class Lobby : Control
 
 
     // ===============================================================
-    // 🧩 ACTUALIZA INFORMACIÓN DEL LOBBY
+    //  ACTUALIZA INFORMACIÓN DEL LOBBY
     // ===============================================================
     public void ActualizarLobbyInfo()
     {
@@ -109,7 +109,7 @@ public partial class Lobby : Control
 
 
     // ===============================================================
-    // 🔄 Actualiza la lista de jugadores (sin cambios)
+    // Actualiza la lista de jugadores (sin cambios)
     // ===============================================================
     // Refresca la lista de jugadores en el UI del lobby
     private void UpdatePlayerList()
@@ -146,7 +146,7 @@ public partial class Lobby : Control
         }
     }
 
-
+  
 
 
 
@@ -156,7 +156,7 @@ public partial class Lobby : Control
 
 
     // ===============================================================
-    // 🧩 BOTONES
+    //  BOTONES
     // ===============================================================
     // Cuando el botón de "comenzar partida" es presionado para empezar la partida
     private void OnComenzarPartidaButtonPressed()

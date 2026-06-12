@@ -9,20 +9,20 @@ public partial class NetworkManager : Node
     // el Instance es para poder acceder a este script desde cualquier otro script
     public static NetworkManager Instance;
 
-    // 🌐 Este script controla toda la lógica de red del juego (crear servidor, unirse, manejar jugadores).
-    // 🔁 Guardará la conexión de red actual (ya sea servidor o cliente).
+    // Este script controla toda la lógica de red del juego (crear servidor, unirse, manejar jugadores).
+    //  Guardará la conexión de red actual (ya sea servidor o cliente).
     // "ENetMultiplayerPeer" es la clase que se encarga de enviar y recibir datos entre jugadores.
     public static ENetMultiplayerPeer Peer;
-    // 📜 Lista de jugadores conectados.
+    //  Lista de jugadores conectados.
     // Se guarda el ID único de cada jugador (clave) y su nombre (valor).
     public static Dictionary<int, string> ListaJugadores = new();
     // Decionario para estados de los jugadores (listo/no listo);
     public static Dictionary<int, bool> EstadosJugadores = new();
-    // 🧍 Nombre del jugador actual.
+    //  Nombre del jugador actual.
     public static string JugadorNombre = "";
     //  Puerto en el que se creó el servidor (lo guardamos manualmente por que Enet no lo prvee GetLocalPort)
     public static int PuertoServidor = 0;
-    // 🚨 Señal que se emitirá cuando cambie la lista de jugadores (para actualizar la UI, por ejemplo).
+    //  Señal que se emitirá cuando cambie la lista de jugadores (para actualizar la UI, por ejemplo).
     [Signal]
     public delegate void ListaJugadoresActualizadaEventHandler();
     [Signal]
@@ -59,10 +59,10 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // 🖥️ CREAR SERVIDOR
+    //  CREAR SERVIDOR
     // ===============================================================
     /* ===============================================================
-      🖥️ PARTE 2: CREAR Y UNIRSE A SERVIDORES
+       PARTE 2: CREAR Y UNIRSE A SERVIDORES
       Aquí está la lógica principal para hospedar una partida o unirse a una existente.
       =============================================================== */
     public void CrearServidor(string nombreJugador, int puerto)
@@ -81,7 +81,7 @@ public partial class NetworkManager : Node
             GD.PrintErr("❌ Error al crear el servidor: " + resultado);
             return;
         }
-        // ⚡ IMPORTANTE: se conecta el "Peer" al sistema de red de Godot.
+        //  IMPORTANTE: se conecta el "Peer" al sistema de red de Godot.
         // Sin esta línea, la red NO funcionará.
         Multiplayer.MultiplayerPeer = Peer;
         // Registramos al jugador que creó la partida como el primer jugador
@@ -91,7 +91,7 @@ public partial class NetworkManager : Node
         EmitSignal(SignalName.ListaJugadoresActualizada);
         // Cambiamos a la escena del lobby (sala de espera).
         GetTree().ChangeSceneToFile("res://Scenes/Networking/Lobby.tscn");
-        GD.Print("✅ Servidor creado en el puerto: " + puerto);
+        GD.Print(" Servidor creado en el puerto: " + puerto);
 
         Rpc(nameof(SincronizarListaJugadores), ListaJugadores.Keys.ToArray(), ListaJugadores.Values.ToArray());
     }
@@ -101,9 +101,9 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // 🌍 UNIRSE A UN SERVIDOR EXISTENTE
+    // UNIRSE A UN SERVIDOR EXISTENTE
     // ===============================================================
-    // 🌍 Unirse a un servidor existente
+    //  Unirse a un servidor existente
     public void UnirseServidor(string ip, int puerto, string nombreJugador)
     {
         JugadorNombre = nombreJugador;
@@ -127,10 +127,10 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // ⚙️ EVENTOS DE CONEXIÓN / DESCONEXIÓN
+    //  EVENTOS DE CONEXIÓN / DESCONEXIÓN
     // ===============================================================
     /* ===============================================================
-       ⚙️ PARTE 3: EVENTOS DE RED (CONEXIÓN Y DESCONEXIÓN)
+        PARTE 3: EVENTOS DE RED (CONEXIÓN Y DESCONEXIÓN)
        Estas funciones se activan automáticamente según el estado de red.
        =============================================================== */
     // Cuando un jugador se conecta (solo el servidor lo ve)
@@ -159,7 +159,7 @@ public partial class NetworkManager : Node
     // Cuando el cliente logra conectarse al servidor correctamente.
     private void OnConectarAlServidor()
     {
-        GD.Print("✅ Conectado al servidor, registrando jugador...");
+        GD.Print(" Conectado al servidor, registrando jugador...");
         // El cliente envía su nombre al servidor usando un RPC.
         // "RpcId(1, ...)" significa que este mensaje se manda al peer con ID 1 (el servidor).
         RpcId(1, nameof(RegistrarJugador), JugadorNombre);
@@ -184,7 +184,7 @@ public partial class NetworkManager : Node
     // Si el servidor se apaga o se desconecta
     private void OnServidorDesconectado()
     {
-        GD.PrintErr("⚠️ Desconectado del servidor.");
+        GD.PrintErr(" Desconectado del servidor.");
         // Se borra la conexión actual
         Multiplayer.MultiplayerPeer = null;
         // Se limpia la lista de jugadores
@@ -201,14 +201,14 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // 🧾 REGISTRO Y SINCRONIZACIÓN DE JUGADORES
+    //  REGISTRO Y SINCRONIZACIÓN DE JUGADORES
     // ===============================================================
     /* ===============================================================
-       🧾 PARTE 4: REGISTRO Y SINCRONIZACIÓN DE JUGADORES
+        PARTE 4: REGISTRO Y SINCRONIZACIÓN DE JUGADORES
        Aquí se registra cada jugador, se actualizan listas
        y se sincronizan con todos los peers conectados.
        =============================================================== */
-    // 🧾 RPC: Método remoto que registra al jugador en el servidor.
+    //  RPC: Método remoto que registra al jugador en el servidor.
     // Este se ejecuta SOLO en el servidor cuando un cliente se conecta.
     //[Rpc(MultiplayerApi.RpcMode.Authority, CallLocal = true)]
     // la diferencia entre Authority y AnyPeer es que Authority 
@@ -284,10 +284,10 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // 🔁 FUNCIONALIDAD DE "LISTO / NO LISTO"
+    //  FUNCIONALIDAD DE "LISTO / NO LISTO"
     // ===============================================================
     /* ===============================================================
-       ✅ PARTE 5: FUNCIONALIDAD DE "LISTO / NO LISTO"
+        PARTE 5: FUNCIONALIDAD DE "LISTO / NO LISTO"
        Esta parte controla los estados de cada jugador en el lobby,
        sincroniza visualmente quién está listo, y avisa al servidor.
        =============================================================== */
@@ -381,14 +381,14 @@ public partial class NetworkManager : Node
 
 
     // ===============================================================
-    // 💾 UTILIDADES DE RED
+    //  UTILIDADES DE RED
     // ===============================================================
     /* ===============================================================
-    💾 PARTE 6: UTILIDADES DE RED Y SISTEMA
+     PARTE 6: UTILIDADES DE RED Y SISTEMA
     Estas funciones no afectan la jugabilidad, pero ayudan a
     mostrar información útil como IP y puerto del servidor.
     =============================================================== */
-    // 🔎 Obtiene la IP local de la computadora (para mostrarla al crear el servidor)
+    //  Obtiene la IP local de la computadora (para mostrarla al crear el servidor)
     public string obtenerDireccionIPLocal()
     {
         try
@@ -432,7 +432,7 @@ public partial class NetworkManager : Node
 
         if (Multiplayer.MultiplayerPeer == null)
         {
-            GD.Print("ℹ️ No hay conexión de red activa que cerrar.");
+            GD.Print("ℹ No hay conexión de red activa que cerrar.");
             return;
         }
 
@@ -447,7 +447,7 @@ public partial class NetworkManager : Node
 
             EmitSignal(SignalName.ListaJugadoresActualizada);
             EmitSignal(SignalName.EstadosJugadoresActualizados);
-            GD.Print("✅ Conexión cerrada correctamente.");
+            GD.Print(" Conexión cerrada correctamente.");
         }
         catch (Exception e)
         {
@@ -458,8 +458,7 @@ public partial class NetworkManager : Node
 
 
 
-
-    // 🔢 Obtiene el puerto actual del servidor (útil para mostrarlo en pantalla)
+    //  Obtiene el puerto actual del servidor (útil para mostrarlo en pantalla)
     public int obtenerPuertoLocal() => PuertoServidor;
 
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class ClaseManager : Node
 {
-    // 🔷 Singleton (única instancia global)
+    // Singleton (única instancia global)
     public static ClaseManager Instance { get; private set; }
     // Diccionario con las clases del juego
     private Dictionary<string, ClaseInfo> _clases = new();
